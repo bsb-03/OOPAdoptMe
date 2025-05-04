@@ -33,6 +33,7 @@ public class View extends JFrame {
 	 * Create the frame.
 	 */
 	public View() {
+		setTitle("Adopt Me!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -40,7 +41,6 @@ public class View extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
 		JButton btnAddPet = new JButton("Add Pet");
 		btnAddPet.setBounds(10, 227, 89, 23);
 		contentPane.add(btnAddPet);
