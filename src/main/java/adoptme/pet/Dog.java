@@ -15,6 +15,10 @@ public class Dog extends Pet{
 		this.isAdopted = adopted;
 	}
 	
+	public void adopt() {
+		this.isAdopted = true;
+	}
+	
 	public String getName() {
 		return name;
 	}

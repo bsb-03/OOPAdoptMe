@@ -17,4 +17,5 @@ public abstract class Pet {
 	public abstract String getName();
 	public abstract String getSpecies();
 	public abstract int getAge();
+	public abstract void adopt();
 }
