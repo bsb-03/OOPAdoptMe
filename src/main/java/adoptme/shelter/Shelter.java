@@ -23,6 +23,17 @@ public class Shelter<T extends Pet> {
 		return null;
 	}
 	
+	public Pet removePetByName(String name) {
+		for(Pet p : petArray) {
+			if(p.getName() == name) {
+				petArray.remove(p);
+				return p;
+			}
+		}
+		
+		return null;
+	}
+	
 	public void sortByName() {
 		petArray.sort( (a, b) -> {return a.getName().compareTo(b.getName());});
 	}
