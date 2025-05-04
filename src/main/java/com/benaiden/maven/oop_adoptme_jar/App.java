@@ -1,13 +1,11 @@
 package com.benaiden.maven.oop_adoptme_jar;
+import adoptme.pet.*;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Pet myPet = new Dog("Spot", "Boston Terrier", 5);
     }
 }
