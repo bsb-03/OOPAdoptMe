@@ -11,4 +11,6 @@ public abstract class Pet {
 		
 		return petString;
 	}
+	
+	public abstract String getName();
 }
