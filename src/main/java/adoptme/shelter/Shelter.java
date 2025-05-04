@@ -27,6 +27,14 @@ public class Shelter<T extends Pet> {
 		petArray.sort( (a, b) -> {return a.getName().compareTo(b.getName());});
 	}
 	
+	public void sortBySpecies() {
+		petArray.sort( (a, b) -> {return a.getSpecies().compareTo(b.getSpecies());});
+	}
+	
+	public void sortByAge() {
+		petArray.sort( (a, b) -> {return a.getAge().compareTo(b.getAge());});
+	}
+	
 	@Override
 	public String toString() {
 		String outputString = "";
