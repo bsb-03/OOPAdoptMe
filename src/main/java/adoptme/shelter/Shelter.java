@@ -90,4 +90,16 @@ public class Shelter<T extends Pet> {
 		return outputString;
 	}
 	
+	public ArrayList<T> getArray() {
+		return petArray;
+	}
+	
+	public Shelter<T> merge(Shelter<T> s) {
+		for(T p : s.getArray()) {
+			petArray.add(p);
+		}
+		
+		return this;
+	}
+	
 }

@@ -21,8 +21,10 @@ public class App {
         Shelter<Pet> petShelter = parseJsonToShelter(petsFilePath);
         Shelter<Pet> exoticShelter = parseExoticJsonToShelter(exoticFilePath);
         
-        System.out.println(petShelter.toString());
-        System.out.println(exoticShelter.toString());
+        Shelter<Pet> shelter = petShelter.merge(exoticShelter);
+        shelter.sortByName();
+        
+        System.out.println(shelter.toString());
     	
         /**
     	 * Launch the application.
@@ -65,7 +67,6 @@ public class App {
             for (Pet pet : pets) {
                 petShelter.addPet(pet);
             }
-            System.out.println("Loaded " + pets.size() + " pets into the shelter.");
         } catch (Exception e) {
             e.printStackTrace();
         }
