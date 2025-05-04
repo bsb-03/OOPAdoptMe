@@ -7,11 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 public class View extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtSortingMethod;
 
 	/**
 	 * Create the frame.
@@ -48,5 +51,20 @@ public class View extends JFrame {
 		JButton btnViewDetails = new JButton("View Details");
 		btnViewDetails.setBounds(10, 193, 89, 23);
 		contentPane.add(btnViewDetails);
+		
+		JComboBox sortComboBox = new JComboBox();
+		sortComboBox.setToolTipText("Sorting Method");
+		sortComboBox.setBounds(208, 193, 89, 22);
+		sortComboBox.addItem("Name");
+        sortComboBox.addItem("Age");
+        sortComboBox.addItem("Species");
+		contentPane.add(sortComboBox);
+		
+		txtSortingMethod = new JTextField();
+		txtSortingMethod.setEditable(false);
+		txtSortingMethod.setText("Sorting Method:");
+		txtSortingMethod.setBounds(109, 196, 89, 20);
+		contentPane.add(txtSortingMethod);
+		txtSortingMethod.setColumns(10);
 	}
 }
