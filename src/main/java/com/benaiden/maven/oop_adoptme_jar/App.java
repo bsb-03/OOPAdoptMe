@@ -7,5 +7,7 @@ public class App
     public static void main( String[] args )
     {
         Pet myPet = new Dog("Spot", "Boston Terrier", 5);
+        
+        System.out.println(myPet.toString());
     }
 }

@@ -5,4 +5,10 @@ public abstract class Pet {
 	protected String species;
 	protected int age;
 	
+	@Override
+	public String toString() {
+		String petString = "Name: " + this.name + " Species: " + this.species + " Age: " + this.age;
+		
+		return petString;
+	}
 }
