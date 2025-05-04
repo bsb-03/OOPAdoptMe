@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 public class View extends JFrame {
 
@@ -37,5 +38,22 @@ public class View extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnAddPet = new JButton("Add Pet");
+		btnAddPet.setBounds(10, 227, 89, 23);
+		contentPane.add(btnAddPet);
+		
+		JButton btnAdoptPet = new JButton("Adopt Pet");
+		btnAdoptPet.setBounds(109, 227, 89, 23);
+		contentPane.add(btnAdoptPet);
+		
+		JButton btnRemovePet = new JButton("Remove Pet");
+		btnRemovePet.setBounds(208, 227, 106, 23);
+		contentPane.add(btnRemovePet);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(324, 227, 100, 23);
+		contentPane.add(btnSubmit);
 	}
 }
