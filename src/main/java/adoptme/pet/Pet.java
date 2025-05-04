@@ -5,6 +5,8 @@ public abstract class Pet {
 	protected String species;
 	protected int age;
 	
+	protected boolean isAdopted;
+	
 	@Override
 	public String toString() {
 		String petString = "Name: " + this.name + " Species: " + this.species + " Age: " + this.age;

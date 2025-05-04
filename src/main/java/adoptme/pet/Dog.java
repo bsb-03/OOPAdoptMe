@@ -7,10 +7,12 @@ public class Dog extends Pet{
 		this.age = -1;
 	}
 	
-	public Dog(String n, String s, int a) {
+	public Dog(String n, String s, int a, boolean adopted) {
 		this.name = n;
 		this.species = s;
 		this.age = a;
+		
+		this.isAdopted = adopted;
 	}
 	
 	public String getName() {

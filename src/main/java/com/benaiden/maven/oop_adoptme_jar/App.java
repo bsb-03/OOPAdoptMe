@@ -1,5 +1,6 @@
 package com.benaiden.maven.oop_adoptme_jar;
 import adoptme.pet.*;
+import adoptme.shelter.*;
 
 
 public class App 
@@ -14,8 +15,9 @@ public class App
     	 * Interface buttons (add, delete, adopt, etc.)
     	 * On close: fill .json with updated data
     	 */
-        Pet myPet = new Dog("Spot", "Boston Terrier", 5);
+    	Shelter myShelter = new Shelter<Pet>();
+    	
+        //Pet myPet = new Dog("Spot", "Boston Terrier", 5, false);
         
-        System.out.println(myPet.toString());
     }
 }

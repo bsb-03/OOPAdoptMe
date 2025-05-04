@@ -7,10 +7,12 @@ public class Rabbit extends Pet{
 		this.age = -1;
 	}
 	
-	public Rabbit(String n, String s, int a) {
+	public Rabbit(String n, String s, int a, boolean adopted) {
 		this.name = n;
 		this.species = s;
 		this.age = a;
+		
+		this.isAdopted = adopted;
 	}
 	
 	public String getName() {

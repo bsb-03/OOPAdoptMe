@@ -5,12 +5,16 @@ public class Cat extends Pet{
 		this.name = null;
 		this.species = null;
 		this.age = -1;
+		
+		this.isAdopted = false;
 	}
 	
-	public Cat(String n, String s, int a) {
+	public Cat(String n, String s, int a, boolean adopted) {
 		this.name = n;
 		this.species = s;
 		this.age = a;
+		
+		this.isAdopted = adopted;
 	}
 	
 	public String getName() {
