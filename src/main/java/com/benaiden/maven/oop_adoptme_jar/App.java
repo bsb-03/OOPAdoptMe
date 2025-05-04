@@ -15,6 +15,8 @@ public class App
     	 * Interface buttons (add, delete, adopt, etc.)
     	 * On close: fill .json with updated data
     	 */
+    	/* OLD TEST CODE
+    	 * 
     	Shelter myShelter = new Shelter<Pet>();
     	
         Pet pet1 = new Dog("Spot", "Boston Terrier", 5, false);
@@ -27,7 +29,9 @@ public class App
         
         myShelter.sortByName();
         
-        System.out.println(myShelter.toString());
+        System.out.println(myShelter.toString());*/
+    	
+    	
         
     }
 }

@@ -9,7 +9,8 @@ public class Cat extends Pet{
 		this.isAdopted = false;
 	}
 	
-	public Cat(String n, String s, int a, boolean adopted) {
+	public Cat(int i, String n, String s, int a, boolean adopted) {
+		this.id = i;
 		this.name = n;
 		this.species = s;
 		this.age = a;

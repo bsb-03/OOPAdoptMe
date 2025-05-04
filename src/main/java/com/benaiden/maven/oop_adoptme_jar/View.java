@@ -38,5 +38,4 @@ public class View extends JFrame {
 
 		setContentPane(contentPane);
 	}
-
 }
