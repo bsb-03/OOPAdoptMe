@@ -32,7 +32,7 @@ public class Shelter<T extends Pet> {
 	}
 	
 	public void sortByAge() {
-		petArray.sort( (a, b) -> {return a.getAge().compareTo(b.getAge());});
+	    petArray.sort((a, b) -> Integer.compare(a.getAge(), b.getAge()));
 	}
 	
 	@Override
