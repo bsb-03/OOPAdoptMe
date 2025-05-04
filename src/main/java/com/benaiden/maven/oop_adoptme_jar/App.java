@@ -1,5 +1,6 @@
 package com.benaiden.maven.oop_adoptme_jar;
 
+import java.awt.EventQueue;
 import java.io.*;
 import java.util.List;
 
@@ -22,6 +23,20 @@ public class App {
         
         System.out.println(petShelter.toString());
         System.out.println(exoticShelter.toString());
+    	
+        /**
+    	 * Launch the application.
+    	 */
+        EventQueue.invokeLater(new Runnable() {
+    		public void run() {
+    			try {
+    				View frame = new View();
+    				frame.setVisible(true);
+    			} catch (Exception e) {
+    				e.printStackTrace();
+    			}
+    		}
+    	});
     }
     
     private static Shelter<Pet> parseJsonToShelter(String f) {
@@ -58,7 +73,8 @@ public class App {
         //System.out.println(petShelter.toString());
         return petShelter;
     }
-    
+
+	
     private static Shelter<Pet> parseExoticJsonToShelter(String f) {
     	Shelter<Pet> exoticShelter = new Shelter<>();
         Gson gson = new Gson();
@@ -79,4 +95,6 @@ public class App {
         }
         
     }
+    
+    
 }
