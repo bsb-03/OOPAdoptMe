@@ -11,11 +11,21 @@ import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import adoptme.pet.*;
 import adoptme.shelter.*;
+import adoptme.adapter.*;
 
 public class App {
     public static void main(String[] args) {
-        String filename = "./src/main/resources/pets.json";
-        Shelter<Pet> petShelter = new Shelter<>();
+        String petsFilePath = "./src/main/resources/pets.json";
+        String exoticFilePath = "./src/main/resources/exotic_animals.json";
+        Shelter<Pet> petShelter = parseJsonToShelter(petsFilePath);
+        Shelter<Pet> exoticShelter = parseExoticJsonToShelter(exoticFilePath);
+        
+        System.out.println(petShelter.toString());
+        System.out.println(exoticShelter.toString());
+    }
+    
+    private static Shelter<Pet> parseJsonToShelter(String f) {
+    	Shelter<Pet> petShelter = new Shelter<>();
 
         RuntimeTypeAdapterFactory<Pet> typeFactory = RuntimeTypeAdapterFactory
                 .of(Pet.class, "type") // type field determines pet type
@@ -29,10 +39,10 @@ public class App {
 
         JsonReader reader;
         try {
-            reader = new JsonReader(new FileReader(filename));
+            reader = new JsonReader(new FileReader(f));
         } catch (FileNotFoundException e) {
             System.out.println("FILE NOT FOUND");
-            return;
+            return null;
         }
 
         try {
@@ -45,6 +55,28 @@ public class App {
             e.printStackTrace();
         }
         
-        System.out.println(petShelter.toString());
+        //System.out.println(petShelter.toString());
+        return petShelter;
+    }
+    
+    private static Shelter<Pet> parseExoticJsonToShelter(String f) {
+    	Shelter<Pet> exoticShelter = new Shelter<>();
+        Gson gson = new Gson();
+
+        try (JsonReader reader = new JsonReader(new FileReader(f))) {
+            List<RawExoticAnimal> rawList = gson.fromJson(reader, new TypeToken<List<RawExoticAnimal>>(){}.getType());
+
+            ExoticAnimalAdapter adapter = new ExoticAnimalAdapter();
+            for (RawExoticAnimal raw : rawList) {
+                ExoticAnimal exotic = adapter.adapt(raw);
+                exoticShelter.addPet(exotic);
+            }
+
+            return exoticShelter;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
     }
 }
