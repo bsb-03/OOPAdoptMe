@@ -22,4 +22,20 @@ public class Shelter<T extends Pet> {
 		
 		return null;
 	}
+	
+	public void sortByName() {
+		petArray.sort( (a, b) -> {return a.getName().compareTo(b.getName());});
+	}
+	
+	@Override
+	public String toString() {
+		String outputString = "";
+		
+		for(Pet p : petArray) {
+			outputString = outputString + p.toString() + "\n";
+		}
+		
+		return outputString;
+	}
+	
 }

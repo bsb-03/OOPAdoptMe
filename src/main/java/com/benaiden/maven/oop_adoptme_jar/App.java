@@ -17,7 +17,17 @@ public class App
     	 */
     	Shelter myShelter = new Shelter<Pet>();
     	
-        //Pet myPet = new Dog("Spot", "Boston Terrier", 5, false);
+        Pet pet1 = new Dog("Spot", "Boston Terrier", 5, false);
+        Pet pet2 = new Cat("Sally", "Maine Coon", 2, false);
+        Pet pet3 = new Rabbit("Arnold", "White", 1, false);
+        
+        myShelter.addPet(pet1);
+        myShelter.addPet(pet2);
+        myShelter.addPet(pet3);
+        
+        myShelter.sortByName();
+        
+        System.out.println(myShelter.toString());
         
     }
 }
