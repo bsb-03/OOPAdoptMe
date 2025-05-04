@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JList;
 
 public class View extends JFrame {
 
@@ -55,5 +56,13 @@ public class View extends JFrame {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(324, 227, 100, 23);
 		contentPane.add(btnSubmit);
+		
+		JList petList = new JList();
+		petList.setBounds(10, 11, 414, 171);
+		contentPane.add(petList);
+		
+		JButton btnViewDetails = new JButton("View Details");
+		btnViewDetails.setBounds(10, 193, 89, 23);
+		contentPane.add(btnViewDetails);
 	}
 }
