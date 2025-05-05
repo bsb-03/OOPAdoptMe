@@ -24,12 +24,14 @@ public class App {
         Shelter<Pet> shelter = petShelter.merge(exoticShelter);
         shelter.sortByName();
         
-        System.out.println(shelter.toString());
+        View frame = new View(shelter);
+        
+        //System.out.println(shelter.toString()); debug print to test merge
     	
         /**
     	 * Launch the application.
     	 */
-        EventQueue.invokeLater(new Runnable() {
+       /* EventQueue.invokeLater(new Runnable() {
     		public void run() {
     			try {
     				View frame = new View();
@@ -38,7 +40,7 @@ public class App {
     				e.printStackTrace();
     			}
     		}
-    	});
+    	});*/
     }
     
     private static Shelter<Pet> parseJsonToShelter(String f) {
@@ -96,6 +98,5 @@ public class App {
         }
         
     }
-    
-    
+      
 }

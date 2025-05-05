@@ -2,15 +2,11 @@ package com.benaiden.maven.oop_adoptme_jar;
 
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JList;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
+import javax.swing.*;
+import adoptme.shelter.*;
+import adoptme.pet.*;
 
-public class View extends JFrame {
+public class View{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -19,8 +15,50 @@ public class View extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public View() {
-		setTitle("Adopt Me!");
+	public View(Shelter<Pet> s) {
+		String[] listData = new String[s.getArray().size()];
+		int i = 0;
+		for(Pet p : s.getArray()) {
+			listData[i] = p.getName();
+			i++;
+		}
+		
+		JFrame frame = new JFrame("Adopt Me");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(600, 600);
+		frame.setLayout(null);
+        frame.setVisible(true);
+        
+        JList<String> list = new JList<>(listData);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollPane = new JScrollPane(list);
+        scrollPane.setBounds(20, 20, 200, 400);
+        frame.add(scrollPane);
+
+        frame.setVisible(true);
+		
+		JButton addPetButton = new JButton("Add");
+		addPetButton.setBounds(230, 20, 80, 30);
+		frame.add(addPetButton);
+		
+		JButton adoptPetButton = new JButton("Adopt");
+		adoptPetButton.setBounds(230, 50, 80, 30);
+		frame.add(adoptPetButton);
+		
+		JButton removePetButton = new JButton("Remove");
+		removePetButton.setBounds(230, 80, 80, 30);
+		frame.add(removePetButton);
+		
+		JComboBox<String> sortComboBox = new JComboBox<>();
+		sortComboBox.addItem("Name");
+		sortComboBox.addItem("Age");
+		sortComboBox.addItem("Species");
+		sortComboBox.setBounds(20, 450, 80, 30); // Adjust position/size as needed
+		frame.add(sortComboBox);
+
+        
+	}
+		/*setTitle("Adopt Me!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -66,5 +104,5 @@ public class View extends JFrame {
 		txtSortingMethod.setBounds(109, 196, 89, 20);
 		contentPane.add(txtSortingMethod);
 		txtSortingMethod.setColumns(10);
-	}
+	}*/
 }
