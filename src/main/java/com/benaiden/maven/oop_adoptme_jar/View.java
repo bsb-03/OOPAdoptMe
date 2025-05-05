@@ -56,7 +56,6 @@ public class View{
 		sortComboBox.setBounds(20, 450, 80, 30); // Adjust position/size as needed
 		frame.add(sortComboBox);
 
-        
 	}
 		/*setTitle("Adopt Me!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
