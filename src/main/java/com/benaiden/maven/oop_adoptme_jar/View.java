@@ -18,7 +18,6 @@ public class View{
 	/**
 	 * Create the frame.
 	 */
-	
 	private static void saveDataToFiles(Shelter<Pet> s) {
 		String petsFilePath = "./src/main/resources/pets.json";
         String exoticFilePath = "./src/main/resources/exotic_animals.json";
@@ -26,6 +25,11 @@ public class View{
         ShelterSerializer.writeSheltersToJson(s, petsFilePath, exoticFilePath);
 	}
 	
+	/**
+	 * public View(Shelter<Pet> s) - This method creates the pieces of the JFrame
+	 * which is rendered out to the user.
+	 * @param s - List of pet objects
+	 */
 	public View(Shelter<Pet> s) {
 
 		// JFrame
