@@ -1,6 +1,8 @@
 package com.benaiden.maven.oop_adoptme_jar;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import adoptme.shelter.*;
@@ -15,7 +17,8 @@ public class View{
 	/**
 	 * Create the frame.
 	 */
-	public View(Shelter<Pet> s) {
+	
+	private String[] generateNameList(Shelter<Pet> s) {
 		String[] listData = new String[s.getArray().size()];
 		int i = 0;
 		for(Pet p : s.getArray()) {
@@ -23,38 +26,144 @@ public class View{
 			i++;
 		}
 		
+		return listData;
+	}
+	
+	public View(Shelter<Pet> s) {
+		
+		// JFrame
 		JFrame frame = new JFrame("Adopt Me");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(600, 600);
 		frame.setLayout(null);
         frame.setVisible(true);
         
-        JList<String> list = new JList<>(listData);
+        // List of pets
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+		for (Pet p : s.getArray()) {
+		    listModel.addElement(p.getName());
+		}
+		JList<String> list = new JList<>(listModel);
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(list);
         scrollPane.setBounds(20, 20, 200, 400);
         frame.add(scrollPane);
-
-        frame.setVisible(true);
 		
-		JButton addPetButton = new JButton("Add");
-		addPetButton.setBounds(230, 20, 80, 30);
-		frame.add(addPetButton);
-		
-		JButton adoptPetButton = new JButton("Adopt");
-		adoptPetButton.setBounds(230, 50, 80, 30);
-		frame.add(adoptPetButton);
-		
-		JButton removePetButton = new JButton("Remove");
-		removePetButton.setBounds(230, 80, 80, 30);
-		frame.add(removePetButton);
-		
+		// Sorting combo box
 		JComboBox<String> sortComboBox = new JComboBox<>();
 		sortComboBox.addItem("Name");
 		sortComboBox.addItem("Age");
 		sortComboBox.addItem("Species");
 		sortComboBox.setBounds(20, 450, 80, 30); // Adjust position/size as needed
 		frame.add(sortComboBox);
+		
+		// Right-side panel for input
+		JPanel inputPanel = new JPanel();
+		inputPanel.setLayout(null);
+		inputPanel.setBounds(350, 20, 220, 200); // adjust as needed
+		frame.add(inputPanel);
+
+		// Name label and field
+		JLabel nameLabel = new JLabel("Name:");
+		nameLabel.setBounds(10, 10, 80, 25);
+		inputPanel.add(nameLabel);
+
+		JTextField nameField = new JTextField();
+		nameField.setBounds(100, 10, 100, 25);
+		inputPanel.add(nameField);
+
+		// Species label and field
+		JLabel speciesLabel = new JLabel("Species:");
+		speciesLabel.setBounds(10, 45, 80, 25);
+		inputPanel.add(speciesLabel);
+
+		JTextField speciesField = new JTextField();
+		speciesField.setBounds(100, 45, 100, 25);
+		inputPanel.add(speciesField);
+
+		// Age label and field
+		JLabel ageLabel = new JLabel("Age:");
+		ageLabel.setBounds(10, 80, 80, 25);
+		inputPanel.add(ageLabel);
+
+		JTextField ageField = new JTextField();
+		ageField.setBounds(100, 80, 100, 25);
+		inputPanel.add(ageField);
+
+		// Type combo box
+		JLabel typeLabel = new JLabel("Type:");
+		typeLabel.setBounds(10, 115, 80, 25);
+		inputPanel.add(typeLabel);
+
+		String[] petTypes = { "Cat", "Dog", "Rabbit" };
+		JComboBox<String> typeComboBox = new JComboBox<>(petTypes);
+		typeComboBox.setBounds(100, 115, 100, 25);
+		inputPanel.add(typeComboBox);
+		
+        // Add button
+		JButton addPetButton = new JButton("Add");
+		addPetButton.setBounds(230, 20, 80, 30);
+		addPetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+	            if(nameField.getText() == "" || speciesField.getText() == "" || ageField.getText() == "") {
+	            	System.out.println("Please enter the details of your pet!");
+	            } 
+	            else // make new pet
+	            { 
+	            	String nameText = nameField.getText();
+	            	String speciesText = speciesField.getText();
+	            	int ageInput = Integer.parseInt(ageField.getText());
+	            	
+	            	Pet newPet;
+	            	if((String) typeComboBox.getSelectedItem() == "Cat") {
+	            		newPet = new Cat(0, nameText, speciesText, ageInput, false);
+	            	}
+	            	else if((String) typeComboBox.getSelectedItem() == "Dog") {
+	            		newPet = new Dog(0, nameText, speciesText, ageInput, false);
+	            	}
+	            	else {
+	            		newPet = new Rabbit(0, nameText, speciesText, ageInput, false);
+	            	}
+	            	
+	            	s.addPet(newPet);
+	            	listModel.addElement(nameText);
+	            }
+	        }
+		});
+		frame.add(addPetButton);
+		
+		// Adopt button
+		JButton adoptPetButton = new JButton("Adopt");
+		adoptPetButton.setBounds(230, 50, 80, 30);
+		adoptPetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+	            // adopt pet (is adopted?) -> update list
+	           String selectedName = list.getSelectedValue();
+	           
+	           Pet p = s.getPetByName(selectedName);
+	           p.adopt();
+	        }
+		});
+		frame.add(adoptPetButton);
+		
+		// Remove button
+		JButton removePetButton = new JButton("Remove");
+		removePetButton.setBounds(230, 80, 80, 30);
+		removePetButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selectedName = list.getSelectedValue();
+				
+				s.removePetByName(selectedName);
+				
+				listModel.removeElement(selectedName);
+	        }
+		});
+		frame.add(removePetButton);
+		
+		frame.setVisible(true);
 
 	}
 		/*setTitle("Adopt Me!");
