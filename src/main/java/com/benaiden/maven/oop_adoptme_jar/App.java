@@ -18,6 +18,10 @@ public class App {
 	
 	/**
 	 * Main method to run the program.
+	 * IMPORTANT NOTE: In order to get the fields to display correctly within the GUI,
+	 * the mouse must be hovered over the fields/the fields must be interacted with. Try
+	 * clicking around on the GUI to get them all to appear. This is a bug in our program
+	 * that we were not able to patch.
 	 * @param args
 	 */
     public static void main(String[] args) {
