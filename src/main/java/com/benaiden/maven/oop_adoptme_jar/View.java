@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import adoptme.shelter.*;
 import adoptme.pet.*;
+import adoptme.serializer.*;
 
 public class View{
 
@@ -18,19 +19,15 @@ public class View{
 	 * Create the frame.
 	 */
 	
-	private String[] generateNameList(Shelter<Pet> s) {
-		String[] listData = new String[s.getArray().size()];
-		int i = 0;
-		for(Pet p : s.getArray()) {
-			listData[i] = p.getName();
-			i++;
-		}
-		
-		return listData;
+	private static void saveDataToFiles(Shelter<Pet> s) {
+		String petsFilePath = "./src/main/resources/pets.json";
+        String exoticFilePath = "./src/main/resources/exotic_animals.json";
+        
+        ShelterSerializer.writeSheltersToJson(s, petsFilePath, exoticFilePath);
 	}
 	
 	public View(Shelter<Pet> s) {
-		
+
 		// JFrame
 		JFrame frame = new JFrame("Adopt Me");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -163,8 +160,17 @@ public class View{
 		});
 		frame.add(removePetButton);
 		
+		// save on close functionality
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+		        saveDataToFiles(s);
+		    }
+		});
+		
 		frame.setVisible(true);
-
+		
+		
 	}
 		/*setTitle("Adopt Me!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
