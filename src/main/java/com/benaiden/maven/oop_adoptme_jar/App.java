@@ -15,6 +15,11 @@ import adoptme.shelter.*;
 import adoptme.adapter.*;
 
 public class App {
+	
+	/**
+	 * Main method to run the program.
+	 * @param args
+	 */
     public static void main(String[] args) {
         String petsFilePath = "./src/main/resources/pets.json";
         String exoticFilePath = "./src/main/resources/exotic_animals.json";
@@ -43,6 +48,12 @@ public class App {
     	});*/
     }
     
+    /**
+     * private static Shelter<Pet> parseJsonToShelter(String f) - Method to 
+     * convert a JSON file into a list of pet objects.
+     * @param f - JSON file.
+     * @return
+     */
     private static Shelter<Pet> parseJsonToShelter(String f) {
     	Shelter<Pet> petShelter = new Shelter<>();
 
@@ -77,7 +88,13 @@ public class App {
         return petShelter;
     }
 
-	
+	/**
+	 * private static Shelter<Pet> parseExoticJsonToShelter(String f) -
+	 * Method to parse through a JSON file and convert it into a list
+	 * of exotic pet objects.
+	 * @param f - JSON file
+	 * @return
+	 */
     private static Shelter<Pet> parseExoticJsonToShelter(String f) {
     	Shelter<Pet> exoticShelter = new Shelter<>();
         Gson gson = new Gson();
