@@ -11,7 +11,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ShelterSerializer {
-
+	
+	/**
+	 * public static void writeSheltersToJson() - This method updates the JSON file with the
+	 * information about the pets.
+	 * @param allPets - List of all pet objects within the shelter
+	 * @param petsFilePath - File path to JSON file containing pet information
+	 * @param exoticFilePath - File path to JSON file containing exotic pet information
+	 */
     public static void writeSheltersToJson(Shelter<Pet> allPets, String petsFilePath, String exoticFilePath) {
         Shelter<Pet> regularPets = new Shelter<>();
         Shelter<ExoticAnimal> exoticPets = new Shelter<>();
